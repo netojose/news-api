@@ -17,6 +17,9 @@ import {config, rootDir} from "./config";
     ttl: 300,
     store: "memory"
   },
+  ajv: {
+    allErrors: true
+  },
   acceptMimes: ["application/json"],
   httpPort: process.env.PORT || 8083,
   httpsPort: false, // CHANGE
