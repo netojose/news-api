@@ -1,5 +1,5 @@
 import {PlatformTest} from "@tsed/common";
-import {Category} from "./Category";
+import Category from "./Category";
 
 describe("Category", () => {
   beforeEach(PlatformTest.create);

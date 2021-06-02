@@ -1,6 +1,6 @@
 import {PlatformTest} from "@tsed/common";
 import SuperTest from "supertest";
-import {Category} from "./Category";
+import Category from "./Category";
 import {Server} from "../Server";
 
 describe("HelloWorldController", () => {
