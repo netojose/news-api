@@ -5,8 +5,6 @@ import LinkItem from "../interfaces/LinkItem";
 
 @Injectable()
 export default class Crawler {
-  //   constructor(private httpService: HttpService) {}
-
   #dom: JSDOM;
 
   async setPageDom(url: string): Promise<void> {

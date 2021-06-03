@@ -2,8 +2,9 @@ import {PlatformTest} from "@tsed/common";
 import SuperTest from "supertest";
 import Category from "./Category";
 import {Server} from "../Server";
+import Ajv from "ajv";
 
-describe("HelloWorldController", () => {
+describe("Category controller", () => {
   let request: SuperTest.SuperTest<SuperTest.Test>;
 
   beforeEach(
@@ -19,9 +20,30 @@ describe("HelloWorldController", () => {
 
   afterEach(PlatformTest.reset);
 
-  it("should call GET /hello-world", async () => {
-    const response = await request.get("/hello-world").expect(200);
+  it("Getting categories list calling GET /categories", async () => {
+    const user = {name: "user", email: "user_categories@email.com", password: "123456"};
+    const responseResgister = await request.post("/auth/register").send(user);
+    const {token} = responseResgister.body;
 
-    expect(response.text).toEqual("hello");
+    const response = await request.get("/categories").set("Authorization", `Bearer ${token}`).expect(200);
+
+    const ajv = new Ajv();
+    const schema = {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          slug: {type: "string"},
+          title: {type: "string"}
+        },
+        required: ["slug", "title"],
+        additionalProperties: false
+      }
+    };
+
+    const validate = ajv.compile(schema);
+    const valid = validate(response.body);
+
+    expect(valid).toBeTruthy();
   });
 });
