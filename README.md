@@ -6,6 +6,10 @@
 - Production URL: https://mistho-api.herokuapp.com
 - Production docs: https://mistho-api.herokuapp.com/docs
 
+## Integration
+
+This project works serving API for this another project: https://github.com/netojose/news-site
+
 ## Project hosting
 
 This project is hosted on Heroku (please be patient on first request, Heroku free accounts put the machine to sleep when inactive).
